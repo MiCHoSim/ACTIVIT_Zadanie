@@ -103,9 +103,8 @@ class RouterController extends Controller
     {
         $managerController = new ManagerController(); // vytvorenie instancie modelu pre správu kontrolérov
         $controllerUrl = array_shift($parsedUrl);
-
-        if ($controllerUrl === 'info')
-            $parsedUrl = array_merge(array('index'), $parsedUrl);
+        if (empty($controllerUrl))
+            $controllerUrl = 'weather';
 
         self::$subPageControllerArray = $managerController->loadController($controllerUrl); // ziskanie kontoléru podľa URL
         if (!self::$subPageControllerArray[ManagerController::CONTROLLER_PATH]) // pokiaľ nebol kontrolér s danou URL nájdeny, Presmeruje na ChybaController
