@@ -1,0 +1,51 @@
+<?php
+use App\CityModul\Model\CityTable;
+?>
+
+<section>
+    <h1 class="text-monospace text-muted text-center">
+        City Administration
+    </h1>
+    <form class="my-2" method="post" id="<?= $_form['form_id'] ?>">
+        <?= $_form['csrf'] ?>
+        <div class="form-inline justify-content-center">
+
+            <span class="m-1"><?= $_form[CityTable::NAME] ?></span>
+
+            <span class="m-1"><?= $_form[CityTable::LATITUDE] ?></span>
+
+            <span class="m-1"><?= $_form[CityTable::LONGITUDE] ?></span>
+
+            <span class="m-1"><?= $_form['save-button'] ?></span>
+        </div>
+    </form>
+    <div class="d-flex justify-content-center">
+        <table class="w-auto table table-hover table-bordered table-responsive ">
+            <thead class="thead-light">
+            <tr>
+                <th title="City name">City Name</th>
+                <th title="City name">Latitude</th>
+                <th title="City name">Longitude</th>
+                <th title="City name">Delete</th>
+            </tr>
+            </thead>
+            <tbody class="text-nowrap">
+            <?php foreach ($cities as $city): ?>
+                <?php $cityId =  array_shift($city); ?>
+                <tr>
+                    <?php foreach ($city as $key => $value): ?>
+                        <td>
+                            <?= $value ?>
+                        </td>
+                    <?php endforeach; ?>
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-dark" href="city/delete/<?= $cityId ?>">
+                            <i title="Delete" class="fa fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</section>

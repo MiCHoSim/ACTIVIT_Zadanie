@@ -1,0 +1,29 @@
+<?php
+use App\MultipleFormModul\Model\UserDataTable;
+?>
+<section>
+    <h1 class="text-monospace text-muted text-center">
+        User data form
+    </h1>
+
+    <div class="d-flex justify-content-center">
+        <form class="" method="post" id="<?= array_shift($_form) ?>">
+
+            <?php foreach ($_form as $nameDb => $control): ?>
+
+                <?= str_contains($nameDb,'button') ? '' : '<span class="m-1 ' . $nameDb .'">' . $control . '</span>'?>
+
+            <?php endforeach; ?>
+            <div class="d-flex">
+                <?= isset($_form['previous-button']) ? '<span>' . $_form['previous-button'] . '</span>' : ''?>
+                <span class="ml-auto"><?= $_form['save-button'] ?></span>
+            </div>
+        </form>
+    </div>
+</section>
+
+<div class="poke-container btn-outline-success d-inline-block">
+    <div id="poke-seznam btn"></div>
+    <div id="poke-detaily"></div>
+</div>
+<script src="js/validatorIban.js"></script>

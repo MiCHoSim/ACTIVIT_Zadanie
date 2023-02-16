@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <title><?= $title ?></title>
+    <base href="https://<?= $domain ?>"/>
+
+    <meta charset="UTF-8"/>
+    <meta name="description" content="<?= $description ?>"/>
+    <meta name="author" content="<?= $author ?>" />
+
+    <link rel="stylesheet" href="css/stylenew.css" type="text/css"/><!-- Moje štýly CSS -->
+
+    <link rel="stylesheet" href="css/fontawesome.min.css" ><!-- Font Awesome -->
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="js/jquery.min.js"></script><!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="js/bootstrap.min.js"></script><!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/stay_standalone.min.js"></script>
+
+    <!-- Oprava konfliktu medzi jQuery UI a Bootstrap -->
+    <script>$.fn.bootstrapBtn = $.fn.button.noConflict();</script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+
+<body>
+<!-- Hlavička -->
+<header class="bg-light">
+
+    <nav class="navbar navbar-expand-sm navbar-light container">
+
+        <a class="navbar-brand  d-flex" href="">
+            <hgroup class="font-italic">
+                <h2 class="text-right text-monospace letter-spacing-5"><?= Settings::$domainName ?></h2>
+                <h4 class="text-right text-success text-monospace letter-spacing-5"><?= Settings::$slogan?></h4>
+            </hgroup>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigacna-lista" aria-controls="navigacna-lista" aria-expanded="false" aria-label="Rozbaliť navigáciu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navigacna-lista">
+            <!-- Menu -->
+            <ul class="ml-auto nav flex-nowrap text-nowrap justify-content-end">
+
+
+                <?php foreach ($menu as $ul): ?>
+                    <li class="nav-item px-md-1">
+                        <a class="nav-link btn btn-sm btn-outline-info <?= $ul['class'] ?>" href="<?= $ul['href'] ?>"><?= $ul['title'] ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- Telo -->
+<section class="position-sticky" >
+
+    <!-- Správy -->
+    <?php foreach ($_messages as $message) : ?>
+        <div class="message-<?=  $message['type'] ?>">
+            <div class="container fixed-top position-sticky opacity-90 text-white font-weight-bolder alert alert-dismissible fade show " role="alert">
+                <?= ControlHelper::controlIcon($message['type'])?>
+                <?= $message['contents'] ?>
+                <?= ControlHelper::cancel('alert') ?>
+            </div>
+        </div>
+    <?php endforeach ?>
+
+    <?php $subpageController->writeView(); ?>
+
+</section>
+<!-- Petička -->
+<footer class="bg-light">
+    <hr class="">
+    <address class="text-center text-monospace p-2">
+        <div>
+                <span>
+                    Copyright © 2023<a href="" class="text-decoration-none text-dark">|<?= Settings::$domainName ?>|</a>
+                </span>
+        </div>
+        <div class="small text-muted pt-2">
+                <span>
+                    Created #<?= Settings::$authorWebu ?># <?= Settings::$authorEmail ?>|<?= Settings::$authorTel ?>
+                    for <?= Settings::$domainName ?>
+                </span>
+        </div>
+    </address>
+
+</footer>
+
+</body>
+</html>

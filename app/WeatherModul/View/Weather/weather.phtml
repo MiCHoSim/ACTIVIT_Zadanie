@@ -1,0 +1,26 @@
+<?php
+use WeatherApi\WeatherApi;
+?>
+<section>
+
+    <h1 class="text-monospace text-muted text-center">
+        The weather in your cities
+    </h1>
+
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <?php foreach ($weatherData as $city => $weatherCity) : ?>
+                <div class="col m-1">
+                    <div class="card w-100 h-100 btn border-success btn-outline-light">
+                        <div class="card-body d-flex flex-column text-center text-dark">
+                            <h4 class="card-header display-4 bg-transparent"><?= $city ?></h4>
+                            <small class="text-muted">Current temperature</small>
+                            <h1 class="card-title text-nowrap"><?= $weatherCity[WeatherApi::TEMPERATURE_2M] ?> °C</h1>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <?= empty($weatherData) ? '<strong>You have no selected cities</strong>' : '' ?>
+        </div>
+    </div>
+</section>

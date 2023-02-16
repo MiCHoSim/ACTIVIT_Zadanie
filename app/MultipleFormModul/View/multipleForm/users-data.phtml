@@ -1,0 +1,44 @@
+<?php
+use App\MultipleFormModul\Model\UserDataTable;
+?>
+<section>
+    <h1 class="text-monospace text-muted text-center">
+        User data
+    </h1>
+    <div class="d-flex justify-content-center">
+        <table class="w-auto table table-hover table-bordered table-responsive ">
+            <thead class="thead-light">
+            <tr>
+                <th title="City name">Name</th>
+                <th title="City name">Last Name</th>
+                <th title="City name">Street</th>
+                <th title="City name">Post Code</th>
+                <th title="City name">Register Number</th>
+                <th title="City name">City</th>
+                <th title="City name">IBAN</th>
+                <th title="City name">Edit</th>
+            </tr>
+            </thead>
+            <tbody class="text-nowrap">
+            <?php foreach ($usersData as $user): ?>
+                <?php $userId =  array_shift($user); ?>
+                <tr>
+                    <?php foreach ($user as $key => $value): ?>
+                        <td>
+                            <?= $value ?>
+                        </td>
+                    <?php endforeach; ?>
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-dark" href="multiple-form/delete/<?= $userId ?>">
+                            <i title="Delete" class="fa fa-trash-alt"></i>
+                        </a>
+                        <a class="btn btn-sm btn-outline-dark" href="multiple-form/save/1/<?= $userId ?>">
+                            <i title="Edit" class="fa fa-pencil-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</section>

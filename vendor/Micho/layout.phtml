@@ -1,0 +1,17 @@
+<hr>
+<article class="mx-1">
+    <header>
+        <ul class="ml-auto nav flex-nowrap text-nowrap justify-content-center">
+            <?php foreach ($menu as $ul): ?>
+                <li class="nav-item px-md-1">
+                    <a class="nav-link btn btn-sm btn-outline-success <?= $ul['class'] ?>" href="<?= $ul['href'] ?>"><?= $ul['title'] ?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </header>
+    <hr>
+    <?php require($subview . '.phtml')  ?>
+    <footer>
+    </footer>
+</article>
+
